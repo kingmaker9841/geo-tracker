@@ -35,6 +35,19 @@ const fontColors = {
   error: '#ff3b3b'
 }
 
+const elevation = {
+  depth0: 'none',
+  depth1: '0px 2px 4px rgba(0, 0, 0, 0.1)',
+  depth2: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+  depth3: '0px 8px 16px rgba(0, 0, 0, 0.1)',
+  depth4: '0px 12px 24px rgba(0, 0, 0, 0.1)',
+  depth5: '0px 16px 32px rgba(0, 0, 0, 0.1)',
+  depth6: '0px 24px 48px rgba(0, 0, 0, 0.1)',
+  depth7: '0px 32px 64px rgba(0, 0, 0, 0.1)',
+  depth8:
+    '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)'
+}
+
 // Define custom breakpoints
 const breakpoints = {
   phone: '320px',
@@ -49,71 +62,76 @@ const getFontStyle = (
   color: keyof typeof fontColors,
   family: keyof typeof fontFamilies
 ) => ({
-  size: fontSizes[size],
   color: fontColors[color],
-  weight: 'normal',
   family: fontFamilies[family],
-  lineHeight: '1.5'
+  lineHeight: '1.5',
+  size: fontSizes[size],
+  weight: 'normal'
 })
 
 // Define the default theme
 export const defaultTheme: DefaultTheme = {
-  font: getFontStyle('medium', 'default', 'body'),
+  breakpoints: breakpoints,
   colors: { ...primaryColors, ...secondaryColors, ...fontColors },
-  fontSizes: fontSizes,
-  breakpoints: breakpoints
+  elevation: elevation,
+  font: getFontStyle('medium', 'default', 'body'),
+  fontSizes: fontSizes
 }
 
 // Define the dark theme
 export const darkTheme: Theme = {
-  font: getFontStyle('medium', 'light', 'body'),
-  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
-  fontSizes: fontSizes,
   breakpoints: breakpoints,
+  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
   dark: {
     font: getFontStyle('medium', 'dark', 'body'),
     colors: { ...primaryColors, ...secondaryColors, ...fontColors },
     ...breakpoints
   },
-  light: false,
-  default: false
+  default: false,
+  elevation: elevation,
+  font: getFontStyle('medium', 'light', 'body'),
+  fontSizes: fontSizes,
+  light: false
 }
 
 // Define the light theme
 export const lightTheme: Theme = {
-  font: getFontStyle('medium', 'dark', 'body'),
-  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
-  fontSizes: fontSizes,
   breakpoints: breakpoints,
+  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
+  dark: false,
+  default: false,
+  elevation: elevation,
+  font: getFontStyle('medium', 'dark', 'body'),
+  fontSizes: fontSizes,
   light: {
     font: getFontStyle('medium', 'light', 'body'),
     colors: { ...primaryColors, ...secondaryColors, ...fontColors },
     ...breakpoints
-  },
-  dark: false,
-  default: false
+  }
 }
 
 // Define the custom Theme type
 export interface Theme extends DefaultTheme {
-  font: ReturnType<typeof getFontStyle>
-  colors: typeof primaryColors & typeof secondaryColors & typeof fontColors
-  fontSizes: typeof fontSizes
   breakpoints: typeof breakpoints
+  colors: typeof primaryColors & typeof secondaryColors & typeof fontColors
   dark: DefaultTheme
-  light: DefaultTheme
   default: DefaultTheme
+  elevation: typeof elevation
+  font: ReturnType<typeof getFontStyle>
+  fontSizes: typeof fontSizes
+  light: DefaultTheme
 }
 
 // Define the final theme object
 export const theme: Theme = {
-  font: getFontStyle('medium', 'default', 'body'),
-  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
-  fontSizes: fontSizes,
   breakpoints: breakpoints,
+  colors: { ...primaryColors, ...secondaryColors, ...fontColors },
   dark: darkTheme,
-  light: lightTheme,
-  default: defaultTheme
+  default: defaultTheme,
+  elevation: elevation,
+  font: getFontStyle('medium', 'default', 'body'),
+  fontSizes: fontSizes,
+  light: lightTheme
 }
 
 // Define the ThemeType union type
