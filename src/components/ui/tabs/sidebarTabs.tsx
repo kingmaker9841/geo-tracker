@@ -43,7 +43,17 @@ function SidebarTabs({
               : theme.secondaryColors.light
           }
           onClick={() => handleTabClick(idx)}>
-          <img src={tab.iconUrl} alt={tab.title} id={`${idx}-svg-image`} />
+          <img
+            src={tab.iconUrl}
+            alt={tab.title}
+            style={
+              currentTab === idx
+                ? { filter: 'brightness(1000%)' }
+                : idx === 0 && currentTab !== 0
+                ? { filter: 'invert(25%)' }
+                : undefined
+            }
+          />
         </Tabs>
       ))}
     </React.Fragment>
