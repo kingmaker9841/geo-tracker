@@ -1,11 +1,8 @@
 import React from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
+import { theme } from 'src/styles/theme'
 import styled from 'styled-components'
-
-type FallbackProps = {
-  error: Error
-  resetErrorBoundary: () => void
-}
+import type { FallbackProps } from 'src/types/error/errorProps'
 
 const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
   <ErrorContainer>
@@ -16,31 +13,30 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => (
 )
 
 const ErrorContainer = styled.div`
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.light};
+  justify-content: center;
 `
 
 const ErrorMessage = styled.p`
-  margin: 0;
-  font-size: ${({ theme }) => theme.font.size.large};
-  font-weight: ${({ theme }) => theme.font.weight.bold};
-  color: ${({ theme }) => theme.colors.error};
+  color: ${() => theme.colors.error};
+  font-size: ${() => theme.fontSizes.extraLarge};
+  font-weight: 600
   margin-bottom: 16px;
+  margin: 0;
 `
 
 const RetryButton = styled.button`
-  background-color: ${({ theme }) => theme.colors.primary};
-  color: ${({ theme }) => theme.colors.white};
-  padding: 8px 16px;
-  border: none;
+  background-color: ${() => theme.colors.primary};
   border-radius: 4px;
-  font-size: ${({ theme }) => theme.font.size.medium};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
+  border: none;
+  color: ${() => theme.fontColors.light};
   cursor: pointer;
+  font-size: ${() => theme.fontSizes.medium};
+  font-weight: 500
+  padding: 8px 16px;
 `
 
 const AppErrorBoundary = ({ children }: { children: React.ReactNode }) => (

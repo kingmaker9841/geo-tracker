@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 import { theme } from 'src/styles/theme'
+import 'ol/ol.css'
 
 const GlobalStyle = createGlobalStyle`
   * {
