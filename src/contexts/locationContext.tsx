@@ -22,6 +22,7 @@ function LocationsProvider(props: LocationProviderProps) {
   const [error] = React.useState<Error | null>(null)
 
   React.useEffect(() => {
+    //[TODO]: after CORS issue fix
     // const fetchLocation = async () => {
     //   try {
     //     setLoading(true)

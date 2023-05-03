@@ -46,7 +46,7 @@ const elevation = {
   depth6: '0px 24px 48px rgba(0, 0, 0, 0.1)',
   depth7: '0px 32px 64px rgba(0, 0, 0, 0.1)',
   depth8:
-    '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13)'
+    '0px 0.6px 1.8px rgba(0, 0, 0, 0.1), 0px 3.2px 7.2px rgba(0, 0, 0, 0.13);'
 }
 
 // Define custom breakpoints

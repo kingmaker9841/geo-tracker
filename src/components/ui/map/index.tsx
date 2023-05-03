@@ -10,16 +10,7 @@ let unique_id = 0
 
 function MapComponent(): JSX.Element {
   const { locations, setLocations } = React.useContext(LocationsContext)
-  const [features, setFeatures] = React.useState(() =>
-    locations.map(
-      (location) =>
-        new Feature({
-          geometry: new Point(fromLonLat([location.lng, location.lat])),
-          name: unique_id++,
-          uid: unique_id++
-        })
-    )
-  )
+  const [features, setFeatures] = React.useState<Feature<Point>[]>([])
   const vectorRef = React.useRef() as React.RefObject<RLayerVector>
 
   React.useEffect(() => {
