@@ -1,6 +1,9 @@
-import type { Locations } from 'src/types/sidebar/location'
+type Coordinates = [number, number]
+interface Locations {
+  locations: Coordinates[]
+}
 
-export function validateData(data: any): data is Locations {
+export function validateData(data: Locations) {
   if (!Array.isArray(data.locations)) return false
   for (const location of data.locations) {
     if (
@@ -14,6 +17,6 @@ export function validateData(data: any): data is Locations {
   return true
 }
 
-function isNumber(value: any): value is number {
+function isNumber(value: number): value is number {
   return typeof value === 'number' && isFinite(value)
 }

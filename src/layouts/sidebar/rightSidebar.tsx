@@ -4,10 +4,10 @@ import LocationGroup from 'src/components/ui/location/locationGroup'
 import styled from 'styled-components'
 import type { Location } from 'src/types/sidebar/location'
 import type { RightSidebarProps } from 'src/types/sidebar/sidebar'
-import type { Theme } from 'src/styles/theme'
+import { theme } from 'src/styles/theme'
 
 const Sidebar = styled.div`
-  box-shadow: ${({ theme }: { theme: Theme }) => theme.elevation.depth8};
+  box-shadow: ${theme.elevation.depth8};
   height: 100%;
   left: 60px;
   position: absolute;
@@ -15,8 +15,7 @@ const Sidebar = styled.div`
 `
 
 const Rightbar = styled(Sidebar)`
-  background-clor: ${({ theme }: { theme: Theme }) =>
-    theme.fontColors.background};
+  background-color: ${theme.fontColors.background};
   overflow-y: auto;
   padding-top: 10px;
   width: 306px;

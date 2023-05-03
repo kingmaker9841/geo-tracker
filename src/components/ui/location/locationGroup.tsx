@@ -2,7 +2,7 @@ import React from 'react'
 import flagIcon from 'src/assets/svg/flag.svg'
 import styled from 'styled-components'
 import type { Location, Locations } from 'src/types/sidebar/location'
-import type { Theme } from 'src/styles/theme'
+import { theme } from 'src/styles/theme'
 
 const LocationDiv = styled.div`
   margin-bottom: 14px;
@@ -35,8 +35,8 @@ const LocationDiv = styled.div`
     }
 
     label {
-      color: ${({ theme }: { theme: Theme }) => theme.colors.dark};
-      font-size: 13px;
+      color: ${theme.colors.default};
+      font-size: ${theme.fontSizes.small};
       font-style: normal;
       font-weight: 700;
       line-height: 19px;
@@ -47,11 +47,9 @@ const LocationDiv = styled.div`
     input {
       border-radius: 5px;
       border: 0.5px solid #c7c7c7;
-      color: ${({ theme }: { theme: Theme }) => theme.colors.primary};
-      font-family: Roboto, sans-serif;
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 500;
+      color: ${theme.colors.primary};
+      font-family: ${theme.fontFamilies.roboto};
+      font-size: ${theme.fontSizes.large};
       height: 33px;
       line-height: 21px;
       outline: none;

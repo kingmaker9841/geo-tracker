@@ -5,7 +5,7 @@ import { LocationsContext } from 'src/contexts/locationContext'
 import { Point } from 'ol/geom'
 import { RMap, ROSM, RLayerVector, RFeature, RStyle, ROverlay } from 'rlayers'
 
-const center = fromLonLat([126.977, 37.566])
+const SeolCityHall = fromLonLat([126.977, 37.566])
 let unique_id = 0
 
 function MapComponent(): JSX.Element {
@@ -32,7 +32,7 @@ function MapComponent(): JSX.Element {
     <RMap
       width={'100%'}
       height={'100%'}
-      initial={{ center: center, zoom: 16 }}
+      initial={{ center: SeolCityHall, zoom: 16 }}
       onClick={(e) => {
         const coords = e.map.getCoordinateFromPixel(e.pixel)
         const lonlat = toLonLat(coords)
