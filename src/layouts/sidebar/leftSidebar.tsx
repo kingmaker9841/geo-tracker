@@ -1,22 +1,48 @@
 import React from 'react'
+import { LeftTab } from 'src/types/sidebar/enums'
+import SidebarTabs from 'src/components/ui/tabs/sidebarTabs'
 import styled from 'styled-components'
+import type { LeftSidebarProps } from 'src/types/sidebar/sidebar'
 import type { Theme } from 'src/styles/theme'
 
 const Sidebar = styled.div`
-  position: absolute;
-  height: 100%;
   box-shadow: ${({ theme }: { theme: Theme }) => theme.elevation.depth8};
-  background-color: ${({ theme }: { theme: Theme }) => theme.colors.light};
+  height: 100%;
+  position: absolute;
 `
 
 const Leftbar = styled(Sidebar)`
-  width: 60px;
+  background-clor: ${({ theme }: { theme: Theme }) => theme.fontColors.light};
+  display: flex;
+  flex-direction: column;
   left: 0;
-  top: 0;
-  border: 1px solid red;
   padding: 8px;
+  top: 0;
+  width: 60px;
 `
 
-const LeftSidebar = () => <Leftbar />
+const LeftSidebar = ({
+  tabs,
+  leftError,
+  leftLoading,
+  getCurrentTab
+}: LeftSidebarProps) => {
+  const [currentTab, setCurrentTab] = React.useState<number>(LeftTab.location)
+
+  const handleTabClick = (curTab: number) => {
+    getCurrentTab(curTab)
+    setCurrentTab(curTab)
+  }
+
+  if (leftLoading) return <></>
+
+  if (leftError) return <>Error loading tabs {leftError.message}</>
+
+  return (
+    <Leftbar>
+      <SidebarTabs {...{ tabs, handleTabClick, currentTab }} />
+    </Leftbar>
+  )
+}
 
 export default LeftSidebar

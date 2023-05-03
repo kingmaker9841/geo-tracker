@@ -32,7 +32,8 @@ const fontColors = {
   secondary: '#2B4877',
   light: '#fff',
   dark: '#000',
-  error: '#ff3b3b'
+  error: '#ff3b3b',
+  background: '#FBFBFB'
 }
 
 const elevation = {
@@ -73,24 +74,35 @@ const getFontStyle = (
 export const defaultTheme: DefaultTheme = {
   breakpoints: breakpoints,
   colors: { ...primaryColors, ...secondaryColors, ...fontColors },
+  fontColors: fontColors,
   elevation: elevation,
   font: getFontStyle('medium', 'default', 'body'),
-  fontSizes: fontSizes
+  fontSizes: fontSizes,
+  primaryColors: primaryColors,
+  secondaryColors: secondaryColors
 }
 
 // Define the dark theme
 export const darkTheme: Theme = {
   breakpoints: breakpoints,
   colors: { ...primaryColors, ...secondaryColors, ...fontColors },
+  fontFamilies: fontFamilies,
   dark: {
     font: getFontStyle('medium', 'dark', 'body'),
     colors: { ...primaryColors, ...secondaryColors, ...fontColors },
+    fontFamilies: fontFamilies,
+    primaryColors: primaryColors,
+    secondaryColors: secondaryColors,
+    fontColors: fontColors,
     ...breakpoints
   },
   default: false,
   elevation: elevation,
   font: getFontStyle('medium', 'light', 'body'),
   fontSizes: fontSizes,
+  primaryColors: primaryColors,
+  secondaryColors: secondaryColors,
+  fontColors: fontColors,
   light: false
 }
 
@@ -103,9 +115,17 @@ export const lightTheme: Theme = {
   elevation: elevation,
   font: getFontStyle('medium', 'dark', 'body'),
   fontSizes: fontSizes,
+  fontFamilies: fontFamilies,
+  primaryColors: primaryColors,
+  secondaryColors: secondaryColors,
+  fontColors: fontColors,
   light: {
     font: getFontStyle('medium', 'light', 'body'),
     colors: { ...primaryColors, ...secondaryColors, ...fontColors },
+    fontFamilies: fontFamilies,
+    primaryColors: primaryColors,
+    secondaryColors: secondaryColors,
+    fontColors: fontColors,
     ...breakpoints
   }
 }
@@ -120,6 +140,10 @@ export interface Theme extends DefaultTheme {
   font: ReturnType<typeof getFontStyle>
   fontSizes: typeof fontSizes
   light: DefaultTheme
+  fontFamilies: DefaultTheme
+  primaryColors: typeof primaryColors
+  secondaryColors: typeof secondaryColors
+  fontColors: typeof fontColors
 }
 
 // Define the final theme object
@@ -131,7 +155,11 @@ export const theme: Theme = {
   elevation: elevation,
   font: getFontStyle('medium', 'default', 'body'),
   fontSizes: fontSizes,
-  light: lightTheme
+  light: lightTheme,
+  fontFamilies: fontFamilies,
+  primaryColors: primaryColors,
+  secondaryColors: secondaryColors,
+  fontColors: fontColors
 }
 
 // Define the ThemeType union type
