@@ -16,6 +16,7 @@ const Leftbar = styled(Sidebar)`
   display: flex;
   flex-direction: column;
   left: 0;
+  overflow-y: auto;
   padding: 8px;
   top: 0;
   width: 60px;

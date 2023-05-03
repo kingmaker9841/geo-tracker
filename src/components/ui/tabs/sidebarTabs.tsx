@@ -18,7 +18,7 @@ const Tabs = styled.div<TabsProps>`
 
   img {
     height: 100%;
-    objcet-fit: contain;
+    object-fit: contain;
     padding: 10px;
     width: 100%;
   }

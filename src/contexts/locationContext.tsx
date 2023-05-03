@@ -1,11 +1,11 @@
 import React from 'react'
-import { locationsData } from 'src/mock/locations'
 import { validateData } from 'src/utils/validateLocation'
 import type { Location } from 'src/types/sidebar/location'
 import type {
   LocationProviderProps,
   LocationContextTypeProps
 } from 'src/types/sidebar/location'
+import { getLocation } from 'src/services/location/getLocation'
 
 export const LocationsContext = React.createContext<LocationContextTypeProps>({
   locations: [],
@@ -19,52 +19,34 @@ export const LocationsContext = React.createContext<LocationContextTypeProps>({
 function LocationsProvider(props: LocationProviderProps) {
   const [locations, setLocations] = React.useState<Location[]>([])
   const [loading, setLoading] = React.useState(true)
-  const [error] = React.useState<Error | null>(null)
+  const [error, setError] = React.useState<Error | null>(null)
 
   React.useEffect(() => {
-    //[TODO]: after CORS issue fix
-    // const fetchLocation = async () => {
-    //   try {
-    //     setLoading(true)
-    //     const locations = await getLocation()
-    //     if (!locations) {
-    //       const validateLocationsData = validateData(locationsData)
-    //       if (validateLocationsData){
-    //         setLocations(locationsData)
-    //       }
-    //     }else{
-    //       setLocations(locations)
-    //     }
-    //     setLoading(false)
-    //   } catch (error) {
-    //     if (error instanceof Error) {
-    //       setError(error)
-    //     } else {
-    //       setError(new Error('Getting tab failed'))
-    //     }
-    //     setLoading(false)
-    //   }
-    // }
-    // fetchLocation()
-
-    const mockFetchLocations = async () => {
-      setLoading(true)
-      setTimeout(() => {
-        const validateLocationsData = validateData(locationsData)
+    const fetchLocation = async () => {
+      try {
+        setLoading(true)
+        const locations = await getLocation()
+        const validateLocationsData = validateData(locations)
         if (validateLocationsData) {
-          const transformedLocations: Location[] = locationsData.locations.map(
-            (coordinates: number[]): Location => ({
-              lat: coordinates[0],
-              lng: coordinates[1]
+          const arr: Location[] = locations.locations.map(
+            (item: [number, number]) => ({
+              lat: item[0],
+              lng: item[1]
             })
           )
-          setLocations(transformedLocations)
+          setLocations(arr)
         }
         setLoading(false)
-      }, 2000)
+      } catch (error) {
+        if (error instanceof Error) {
+          setError(error)
+        } else {
+          setError(new Error('Getting tab failed'))
+        }
+        setLoading(false)
+      }
     }
-
-    mockFetchLocations()
+    fetchLocation()
   }, [])
 
   return (

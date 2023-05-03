@@ -78,6 +78,7 @@ export const defaultTheme: DefaultTheme = {
   elevation: elevation,
   font: getFontStyle('medium', 'default', 'body'),
   fontSizes: fontSizes,
+  fontFamilies: fontFamilies,
   primaryColors: primaryColors,
   secondaryColors: secondaryColors
 }
@@ -140,7 +141,7 @@ export interface Theme extends DefaultTheme {
   font: ReturnType<typeof getFontStyle>
   fontSizes: typeof fontSizes
   light: DefaultTheme
-  fontFamilies: DefaultTheme
+  fontFamilies: typeof fontFamilies
   primaryColors: typeof primaryColors
   secondaryColors: typeof secondaryColors
   fontColors: typeof fontColors
